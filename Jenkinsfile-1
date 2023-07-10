@@ -1,0 +1,13 @@
+pipeline {
+  stages{
+    stage('First-Stage'){
+
+    }
+    stage('Second-Stage'){
+
+    }
+    stage('Third-Stage'){
+
+    }
+  }
+}
