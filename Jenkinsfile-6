@@ -23,7 +23,6 @@ pipeline {
     stage('Fourth-Stage'){
       steps{
         echo 'Deploying application'
-        echo "Deploying with creds ${SERVER_CREDS}"
         withCredentials([
           usernamePassword(credentials: 'test-user', usernameVariable: USER, passwordVariable: PWD){
             sh "printing cred ${USER} ${PWD}"
