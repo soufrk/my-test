@@ -1,13 +1,19 @@
 pipeline {
   stages{
-    stage ('First-Stage'){
-      echo 'Cloning code'  
+    stage('First-Stage'){
+      steps{
+        echo 'Cloning code'  
+      }
     }
-    stage ('Second-Stage'){
-      echo 'Building code'
+    stage('Second-Stage'){
+      steps{
+        echo 'Building code'
+      }
     }
-    stage ('Third-Stage'){
-      echo 'Post actions'
+    stage('Third-Stage'){
+      steps{
+        echo 'Post actions'
+      }
     }
   }
 }
