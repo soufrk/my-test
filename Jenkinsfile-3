@@ -1,0 +1,36 @@
+pipeline {
+  agent any
+  stages{
+    stage('First-Stage'){
+      steps{
+        echo 'Cloning code'  
+      }
+    }
+    stage('Second-Stage'){
+      when {
+        expression {
+          BRANCH_NAME == 'master'
+        }
+      }
+      steps{
+        echo 'Testing code'
+      }
+    }
+    stage('Third-Stage'){
+      steps{
+        echo 'Building code'
+      }
+    }
+  }
+  post {
+    always {
+      echo 'Always display'
+    }
+    success {
+      echo 'Only when successful'
+    }
+    failure {
+      echo 'Only when failed'
+    }
+  }
+}
