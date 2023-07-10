@@ -24,10 +24,9 @@ pipeline {
       steps{
         echo 'Deploying application'
         withCredentials([
-          usernamePassword(credentials: 'test-user', usernameVariable: USER, passwordVariable: PWD){
+          usernamePassword(credentials: 'test-user', usernameVariable: USER, passwordVariable: PWD)]){
             sh "printing cred ${USER} ${PWD}"
           }
-        ])
       }
     }
   }
