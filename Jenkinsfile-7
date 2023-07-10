@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters {
     string(name: 'VERSION', defaultValue: '1.0', description: 'which version to deploy')
-    choice(name: 'ENVIORMNET', choices:['DEV','UAT','PROD'], description: 'which environment to deploy to')
+    choice(name: 'STAGE', choices:['DEV','UAT','PROD'], description: 'which environment to deploy to')
     booleanParam(name: 'SKIP_TESTS', defaultValue: true, description: 'if tests are to be skipped')
   }
   stages{
@@ -28,7 +28,7 @@ pipeline {
     }
     stage('Fourth-Stage'){
       steps{
-        echo "Deploying application to ${params.ENVIRONMENT}"
+        echo "Deploying application to ${params.STAGE}"
       }
     }
   }
