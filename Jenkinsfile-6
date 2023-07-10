@@ -1,0 +1,35 @@
+pipeline {
+  agent any
+  environment {
+    VER = '0.10.RELEASE'
+  }
+  stages{
+    stage('First-Stage'){
+      steps{
+        echo 'Variable interpolation does not work for single quote ${VER}'
+        echo "But, it works for double quote, and the version is ${VER}"
+      }
+    }
+    stage('Second-Stage'){
+      steps{
+        echo 'Testing code'
+      }
+    }
+    stage('Third-Stage'){
+      steps{
+        echo 'Building code'
+      }
+    }
+    stage('Fourth-Stage'){
+      steps{
+        echo 'Deploying application'
+        echo "Deploying with creds ${SERVER_CREDS}"
+        withCredentials([
+          usernamePassword(credentials: 'test-user', usernameVariable: USER, passwordVariable: PWD){
+            sh "printing cred ${USER} ${PWD}"
+          }
+        ])
+      }
+    }
+  }
+}
