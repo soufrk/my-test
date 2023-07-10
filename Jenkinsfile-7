@@ -1,0 +1,35 @@
+pipeline {
+  agent any
+  parameters {
+    string(name: 'VERSION', defaultValue: '1.0', description: 'which version to deploy')
+    choice(name: 'ENVIORMNET', choices:['DEV','UAT','PROD'], description: 'which environment to deploy to')
+    booleanParam(name: 'SKIP_TESTS', defaultValue: true, description: 'if tests are to be skipped')
+  }
+  stages{
+    stage('First-Stage'){
+      steps{
+        echo 'Cloning the code'
+      }
+    }
+    stage('Second-Stage'){
+      when{
+        expression{
+          params.SKIP_TESTS == false
+        }
+      }
+      steps{
+        echo 'Testing code'
+      }
+    }
+    stage('Third-Stage'){
+      steps{
+        echo "Building code version ${params.VERSION}"
+      }
+    }
+    stage('Fourth-Stage'){
+      steps{
+        echo "Deploying application to ${params.ENVIRONMENT}"
+      }
+    }
+  }
+}
