@@ -21,7 +21,7 @@ pipeline {
     always {
       echo 'Always display'
     }
-    sucess {
+    success {
       echo 'Only when successful'
     }
     failure {
